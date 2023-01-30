@@ -1,0 +1,13 @@
+{
+  "name": "credit-card-2lvl",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "dependencies": {
+    "card-info": "^1.2.4",
+    "redom": "^3.29.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
+}
