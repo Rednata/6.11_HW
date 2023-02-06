@@ -1,77 +1,67 @@
-// import CardInfo from "card-info/dist/card-info";
-import {el, setChildren, svg} from 'redom';
+import inputmask from "inputmask";
 
-import {CardInfo} from 'card-info'
+const getValueName = (target, svgElem, svgElemBack) => {    
+  target.addEventListener('input', () => {     
+      svgElem.textContent = target.value;                      
+        svgElemBack.textContent = target.value        
+  })
+}
 
+const getValueNumber = (target, svgElem) => {
+  target.addEventListener('input', () => {            
+      const card = mask.find(elem => {
+        const reg = new RegExp(elem.regex);
+        if (reg.test(target.value)) {            
+          return elem
+        }   
+    })  
+    const im = new Inputmask({mask: card.mask, placeholder: '.'})                      
+    im.mask(target);      
+    svgElem.textContent = target.value;   
+
+    ccicon.innerHTML = card.icon;
+    ccsingle.innerHTML =  card.logo;
+
+    swapColor(card.color);  
+    });
+}
+
+const getValue = (target, svgElem, maskCode) => {    
+  target.addEventListener('input', () => {     
+      svgElem.textContent = target.value;      
+  })    
+    const im = new inputmask({regex: maskCode});
+    console.log(im);
+    im.mask(target);
+}
 
 const valueFull = () => {
-  const cardName = document.querySelector('#name');
-  const cardDate = document.querySelector('#expirationdate');
-  const cardNumber = document.querySelector('#cardnumber');
-  const cardSecurity = document.querySelector('#securitycode');
   const form = document.querySelector('.form-container');
-  const svgNumber = document.querySelector('#svgnumber');
-  const svgName = document.querySelector('#svgname');
-  const svgExpire = document.querySelector('#svgexpire');
-  const svgSecurity = document.querySelector('#svgsecurity');
   
-  const getValueName = (target, svgElem) => {
-    target.addEventListener('input', () => {
-      svgElem.textContent = target.value;
-      document.querySelector('#svgnameback').textContent = target.value;
-    }) 
-  }
-
-  const getValueNumber = (target, svgElem) => {
-    target.addEventListener('input', () => {
-      svgElem.textContent = target.value;        
-      });
-  }
-
-
-  const getValue = (target, svgElem) => {    
-    target.addEventListener('input', () => {
-        svgElem.textContent = target.value;    
-    })
-  }
-
-  form.addEventListener('click', ({target}) => {
-
-    if (target === cardName) {
-      getValueName(target, svgName);
-
-    } else if (target === cardNumber) {
-      getValueNumber(target, svgNumber);  
-      
-
-    } else if (target === cardDate) {
-      getValue(target, svgExpire)
-    } else if (target === cardSecurity) {
-      getValue(target, svgSecurity)
+  form.addEventListener('click', ({target}) => {    
+    if (target === name) {      
+      getValueName(target, svgname, svgnameback);
+    } else if (target === expirationdate) {
+      const maskCode = '[0-3][0-9]/[0-1][0-2]';
+      getValue(target, document.querySelector('#svgexpire'), maskCode);
+    } else if (target === cardnumber) {
+      getValueNumber(target, document.querySelector('#svgnumber'));
+    } else if (target === securitycode) {
+      const maskCode = '[0-9]{3}';
+      getValue(target, document.querySelector('#svgsecurity'), maskCode);  
     }
+  })
 
-    if (cardNumber.value) {
-      const bank = new CardInfo(cardNumber.value, {
-      brandsLogosPath: './node_modules/card-info/dist/brands-logos/'
-      });
-      console.log(bank);
-      const bankImg = el('img', {src: `${bank.brandLogoSvg}`});
-      setChildren(document.body, bankImg)
-      const img = document.createElement('img');
-      img.src = bank.brandLogoSvg;
-      document.body.append(img);
-
-    }
-    if (cardName.value && cardNumber.value && cardDate.value && cardSecurity.value) {
+  form.addEventListener('change', () => {
+    if (name.value && cardnumber.value && expirationdate.value && securitycode.value) {
       document.querySelector('.creditcard').classList.add('flipped');
     }
   })
 
-  
-
 
 // 6011331057646781
 // 5018547789746673 = Maestro
+// 4556844844421710 = Visa
 }
 
 export {valueFull};
