@@ -2,9 +2,9 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
-    display: -webkit-box;
+    /* display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    display: flex; */
     -ms-flex-line-pack: center;
         align-content: center;
     -webkit-box-align: center;
@@ -17,6 +17,39 @@ body {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     font-family: 'Raleway';
+}
+
+.btn-valid {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 40px;
+    border-radius: 10px;
+    border: 2px solid rgb(207, 199, 198);
+    font-size: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.wrapper {
+    background-color: #f9f9f9;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;    
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    font-family: 'Raleway';
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
 
 .payment-title {
