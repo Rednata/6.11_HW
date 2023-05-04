@@ -1,4 +1,5 @@
-import inputmask from "inputmask";
+import Inputmask from "./node_modules/inputmask/dist/inputmask.es6.js";
+import{getTesting} from './validation/validTest.js';
 
 const getValueName = (target, svgElem, svgElemBack) => {    
   target.addEventListener('input', () => {     
@@ -13,10 +14,10 @@ const getValueNumber = (target, svgElem) => {
         const reg = new RegExp(elem.regex);
         if (reg.test(target.value)) {            
           return elem
-        }   
+        }           
     })  
     const im = new Inputmask({mask: card.mask, placeholder: '.'})                      
-    im.mask(target);      
+    im.mask(target);          
     svgElem.textContent = target.value;   
 
     ccicon.innerHTML = card.icon;
@@ -30,7 +31,7 @@ const getValue = (target, svgElem, maskCode) => {
   target.addEventListener('input', () => {     
       svgElem.textContent = target.value;      
   })    
-    const im = new inputmask({regex: maskCode});
+    const im = new Inputmask({regex: maskCode});
     console.log(im);
     im.mask(target);
 }
@@ -53,8 +54,9 @@ const valueFull = () => {
   })
 
   form.addEventListener('change', () => {
-    if (name.value && cardnumber.value && expirationdate.value && securitycode.value) {
-      document.querySelector('.creditcard').classList.add('flipped');
+    if (name.value && cardnumber.value && expirationdate.value && securitycode.value) {      
+      getTesting();
+      // document.querySelector('.creditcard').classList.add('flipped');
     }
   })
 

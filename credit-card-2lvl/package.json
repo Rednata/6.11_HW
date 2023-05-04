@@ -1,13 +1,19 @@
 {
   "name": "credit-card-2lvl",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "jest"
+  },
   "author": "",
   "dependencies": {
     "inputmask": "^5.0.7",
     "redom": "^3.29.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "babel-jest": "^29.5.0",
+    "jest": "^29.5.0",
     "parcel": "^2.8.3"
   }
 }

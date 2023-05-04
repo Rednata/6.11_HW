@@ -1,8 +1,10 @@
-import {el, setChildren, svg} from 'redom';
+import {el, setChildren, svg} from './node_modules/redom/dist/redom.es.js';
 import { valueFull } from './function.js';
+// import { getTesting } from './validTest.js';
 
 const title = el('div.payment-title', el('h1', 'Payment Information'));
 
+const wrapper = el('div.wrapper');
 const front = el('div.front');
 setChildren(front, el('div.#ccsingle'));
 front.insertAdjacentHTML('beforeend', 
@@ -139,9 +141,12 @@ const fieldCode = el('div.field-container',
 );
 
 const formContainer = el('div.form-container');
+const btn = el('button.btn-valid', 'Отправить', {type: 'submit'});
 
 setChildren(formContainer, fieldName, fieldNumber, fieldDate, fieldCode);
-setChildren(document.body, container, formContainer)
+setChildren(wrapper, container, formContainer)
+setChildren(document.body, wrapper, btn);
+
 
 valueFull();
 
